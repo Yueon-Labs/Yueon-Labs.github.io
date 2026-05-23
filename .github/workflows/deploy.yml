@@ -1,0 +1,120 @@
+name: Deploy static site
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-static-site
+  cancel-in-progress: true
+
+env:
+  DEPLOY_PATH: /var/www/aigcwzu
+
+jobs:
+  deploy:
+    name: Deploy to GCP VM
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate static site files
+        run: |
+          set -euo pipefail
+          test -f index.html
+          test -f styles.css
+          test -f script.js
+          test -d assets
+          if find . \( -name '.DS_Store' -o -name '._*' \) -print -quit | grep -q .; then
+            echo "macOS metadata files must not be deployed."
+            exit 1
+          fi
+
+      - name: Build deployment archive
+        run: |
+          set -euo pipefail
+          tar \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='.DS_Store' \
+            --exclude='._*' \
+            -czf "$RUNNER_TEMP/site-${GITHUB_SHA}.tar.gz" \
+            index.html palettes.html robots.txt styles.css script.js assets
+
+      - name: Configure SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.GCP_DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.GCP_DEPLOY_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/gcp_deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 700 ~/.ssh
+          chmod 600 ~/.ssh/gcp_deploy_key ~/.ssh/known_hosts
+
+      - name: Upload archive
+        env:
+          DEPLOY_HOST: ${{ secrets.GCP_DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.GCP_DEPLOY_USER }}
+          DEPLOY_PORT: ${{ secrets.GCP_DEPLOY_PORT }}
+        run: |
+          set -euo pipefail
+          DEPLOY_PORT="${DEPLOY_PORT:-22}"
+          scp -P "$DEPLOY_PORT" \
+            -i ~/.ssh/gcp_deploy_key \
+            "$RUNNER_TEMP/site-${GITHUB_SHA}.tar.gz" \
+            "${DEPLOY_USER}@${DEPLOY_HOST}:/tmp/yueon-site-${GITHUB_SHA}.tar.gz"
+
+      - name: Activate release
+        env:
+          DEPLOY_HOST: ${{ secrets.GCP_DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.GCP_DEPLOY_USER }}
+          DEPLOY_PORT: ${{ secrets.GCP_DEPLOY_PORT }}
+        run: |
+          set -euo pipefail
+          DEPLOY_PORT="${DEPLOY_PORT:-22}"
+          ssh -p "$DEPLOY_PORT" \
+            -i ~/.ssh/gcp_deploy_key \
+            "${DEPLOY_USER}@${DEPLOY_HOST}" \
+            "DEPLOY_PATH='${DEPLOY_PATH}' ARCHIVE_PATH='/tmp/yueon-site-${GITHUB_SHA}.tar.gz' bash -s" <<'REMOTE'
+          set -euo pipefail
+
+          if [ "$DEPLOY_PATH" != "/var/www/aigcwzu" ]; then
+            echo "Unexpected deploy path: $DEPLOY_PATH"
+            exit 1
+          fi
+
+          release_dir="$(mktemp -d)"
+          cleanup() {
+            rm -rf "$release_dir" "$ARCHIVE_PATH"
+          }
+          trap cleanup EXIT
+
+          tar -xzf "$ARCHIVE_PATH" -C "$release_dir"
+          test -f "$release_dir/index.html"
+          test -f "$release_dir/styles.css"
+          test -f "$release_dir/script.js"
+
+          sudo mkdir -p "$DEPLOY_PATH"
+          sudo find "$DEPLOY_PATH" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+          sudo cp -a "$release_dir"/. "$DEPLOY_PATH"/
+          sudo chown -R www-data:www-data "$DEPLOY_PATH"
+          sudo find "$DEPLOY_PATH" -type d -exec chmod 0755 {} +
+          sudo find "$DEPLOY_PATH" -type f -exec chmod 0644 {} +
+          sudo nginx -t
+          REMOTE
+
+      - name: Verify public page
+        env:
+          DEPLOY_HOST: ${{ secrets.GCP_DEPLOY_HOST }}
+        run: |
+          set -euo pipefail
+          curl -fsS --retry 3 --retry-delay 2 "http://${DEPLOY_HOST}/" | grep -q "Yueon Labs"
