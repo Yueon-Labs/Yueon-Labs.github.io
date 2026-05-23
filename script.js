@@ -2,6 +2,7 @@ const field = document.getElementById('tencentField');
 const microCanvas = document.getElementById('microWordCanvas');
 const ambient = document.getElementById('ambientWords');
 const bottomFlow = document.getElementById('bottomFlow');
+const cursorGlow = document.getElementById('cursorGlow');
 let microCtx = null;
 let microMask = null;
 let microParticles = [];
@@ -9,10 +10,48 @@ let microTextureMeta = { width: 0, height: 0, cssWidth: 0, cssHeight: 0, dpr: 1 
 let bottomCanvas = null;
 let bottomCtx = null;
 let mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+let glow = { x: window.innerWidth / 2, y: window.innerHeight / 2, tx: window.innerWidth / 2, ty: window.innerHeight / 2, active: false };
+let glowFrame = null;
+const finePointerQuery = window.matchMedia('(pointer: fine)');
+const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+const canUseCursorGlow = () => (
+  cursorGlow &&
+  finePointerQuery.matches &&
+  !reducedMotionQuery.matches
+);
+
+function renderCursorGlow() {
+  if (!canUseCursorGlow()) {
+    glowFrame = null;
+    return;
+  }
+
+  glow.x += (glow.tx - glow.x) * .14;
+  glow.y += (glow.ty - glow.y) * .14;
+  cursorGlow.style.transform = `translate3d(${glow.x}px, ${glow.y}px, 0) translate3d(-50%, -50%, 0) scale(${glow.active ? 1 : .92})`;
+  glowFrame = requestAnimationFrame(renderCursorGlow);
+}
+
+function wakeCursorGlow() {
+  if (!canUseCursorGlow()) return;
+  cursorGlow.classList.add('is-active');
+  glow.active = true;
+  if (!glowFrame) glowFrame = requestAnimationFrame(renderCursorGlow);
+}
 
 window.addEventListener('pointermove', (event) => {
   mouse.tx = (event.clientX / window.innerWidth - 0.5) * 2;
   mouse.ty = (event.clientY / window.innerHeight - 0.5) * 2;
+  glow.tx = event.clientX;
+  glow.ty = event.clientY;
+  wakeCursorGlow();
+}, { passive: true });
+
+window.addEventListener('pointerleave', () => {
+  if (!cursorGlow) return;
+  glow.active = false;
+  cursorGlow.classList.remove('is-active');
 }, { passive: true });
 
 const WORDS = [
