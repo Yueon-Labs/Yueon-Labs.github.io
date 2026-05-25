@@ -533,3 +533,19 @@ document.querySelectorAll('.scope-card, .project-card, .join-copy, .roles, .mani
 const style = document.createElement('style');
 style.innerHTML = `.is-visible{opacity:1!important;transform:translateY(0)!important}`;
 document.head.appendChild(style);
+
+document.querySelectorAll('[data-copy]').forEach((button) => {
+  button.addEventListener('click', async () => {
+    const value = button.getAttribute('data-copy') || '';
+    const original = button.textContent;
+    try {
+      await navigator.clipboard.writeText(value);
+      button.textContent = 'Copied';
+    } catch (error) {
+      button.textContent = value;
+    }
+    window.setTimeout(() => {
+      button.textContent = original;
+    }, 1400);
+  });
+});
