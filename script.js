@@ -58,7 +58,7 @@ const WORDS = [
   'MODEL', 'AGENT', 'ROBOTICS', 'AI VIDEO', 'RED TEAM', 'EVALS', 'WORLD MODEL',
   'MULTIMODAL', 'AUTOMATION', 'NETAGENT', 'MEMORY', 'TOOL USE', 'BENCHMARK',
   'OPEN SOURCE', 'WORKFLOW', 'PRIVATECLAW', 'SYSTEMS', 'REASONING', 'EMBODIED AI',
-  'RUNTIME', 'SEARCH', 'LAB', 'YUEON'
+  'RUNTIME', 'SEARCH', 'LAB', 'AIGC-X', 'X-LAB'
 ];
 function rand(min, max) { return min + Math.random() * (max - min); }
 function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
@@ -132,16 +132,16 @@ function createRenderCanvas(width, height) {
   return canvas;
 }
 
-function drawYueonWord(ctx, fillMode = true) {
+function drawBrandWord(ctx, fillMode = true) {
   ctx.font = '950 326px Arial, "Arial Black", Impact, sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.letterSpacing = '-34px';
+  ctx.letterSpacing = '-24px';
   if (fillMode) {
-    ctx.fillText('YUEON', 800, 380);
+    ctx.fillText('AIGC-X', 800, 380);
   } else {
     ctx.lineJoin = 'miter';
-    ctx.strokeText('YUEON', 800, 380);
+    ctx.strokeText('AIGC-X', 800, 380);
   }
 }
 
@@ -179,12 +179,12 @@ function renderMicroWordTexture() {
   const layout = getMicroLayout(width, height);
 
   // A persistent offscreen mask lets the visible canvas redraw moving words
-  // every frame while staying clipped to the YUEON shape.
+  // every frame while staying clipped to the AIGC-X shape.
   microMask = createRenderCanvas(targetW, targetH);
   const maskCtx = microMask.getContext('2d', { alpha: true });
   maskCtx.setTransform(dpr * layout.scale, 0, 0, dpr * layout.scale, dpr * layout.ox, dpr * layout.oy);
   maskCtx.fillStyle = '#000';
-  drawYueonWord(maskCtx, true);
+  drawBrandWord(maskCtx, true);
 
   microTextureMeta = { width: targetW, height: targetH, cssWidth: width, cssHeight: height, dpr, layout };
   const maskData = maskCtx.getImageData(0, 0, targetW, targetH).data;
@@ -270,7 +270,7 @@ function drawMicroField(t) {
   microCtx.setTransform(dpr * layout.scale, 0, 0, dpr * layout.scale, dpr * layout.ox, dpr * layout.oy);
   microCtx.strokeStyle = 'rgba(9,10,13,.026)';
   microCtx.lineWidth = .9;
-  drawYueonWord(microCtx, false);
+  drawBrandWord(microCtx, false);
   microCtx.restore();
 }
 

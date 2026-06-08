@@ -285,6 +285,15 @@ h1 {
   color: var(--ink);
   text-transform: uppercase;
 }
+.hero-center h1 { text-transform: none; }
+.hero-subtitle {
+  margin: 18px 0 0;
+  color: rgba(9,10,13,.56);
+  font-size: clamp(16px, 2.2vw, 28px);
+  font-weight: 850;
+  letter-spacing: .18em;
+  text-transform: none;
+}
 
 .btn {
   display: inline-flex;
