@@ -1,6 +1,6 @@
 # Deployment Workflow
 
-This repository deploys the Yueon Labs organization site to the GCP VM after `main` is updated.
+This repository deploys the AIGC-X organization site to the GCP VM after `main` is updated.
 
 ## Daily Change Flow
 
