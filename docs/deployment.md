@@ -43,6 +43,7 @@ Trigger:
 Target:
 
 ```text
+Public URL: http://www.yueanlab.com/
 GCP VM: hk-org-web-1
 Nginx root: /var/www/aigcwzu
 ```

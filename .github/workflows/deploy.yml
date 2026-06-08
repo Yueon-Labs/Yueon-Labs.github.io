@@ -15,6 +15,7 @@ concurrency:
 
 env:
   DEPLOY_PATH: /var/www/aigcwzu
+  PUBLIC_SITE_URL: http://www.yueanlab.com/
 
 jobs:
   deploy:
@@ -114,8 +115,6 @@ jobs:
           REMOTE
 
       - name: Verify public page
-        env:
-          DEPLOY_HOST: ${{ secrets.GCP_DEPLOY_HOST }}
         run: |
           set -euo pipefail
-          curl -fsS --retry 3 --retry-delay 2 "http://${DEPLOY_HOST}/" | grep -q "AIGC-X"
+          curl -fsS --retry 3 --retry-delay 2 "$PUBLIC_SITE_URL" | grep -q "AIGC-X"
