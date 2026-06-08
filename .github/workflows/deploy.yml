@@ -15,7 +15,7 @@ concurrency:
 
 env:
   DEPLOY_PATH: /var/www/aigcwzu
-  PUBLIC_SITE_URL: http://www.yueanlab.com/
+  PUBLIC_SITE_URL: https://www.yueanlab.com/
 
 jobs:
   deploy:
