@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Starter Card</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(0,0,0,.08), transparent 28%),
+        linear-gradient(135deg, #fff, #f4f4f1);
+      color: #08090c;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main {
+      width: min(720px, calc(100vw - 40px));
+      border: 1px solid rgba(0,0,0,.14);
+      background: rgba(255,255,255,.7);
+      box-shadow: 0 40px 120px rgba(0,0,0,.12);
+      padding: clamp(28px, 6vw, 64px);
+    }
+    p:first-child {
+      margin: 0 0 22px;
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: #6d7078;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(52px, 12vw, 118px);
+      line-height: .86;
+      letter-spacing: -.08em;
+    }
+    .line {
+      height: 1px;
+      margin: 30px 0;
+      background: linear-gradient(90deg, #08090c, transparent);
+    }
+    p:last-child {
+      margin: 0;
+      color: #626671;
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p>AIGC-X Playground Entry</p>
+    <h1>Your idea starts here.</h1>
+    <div class="line"></div>
+    <p>Duplicate this folder, rename it, and replace this page with your own HTML design.</p>
+  </main>
+</body>
+</html>

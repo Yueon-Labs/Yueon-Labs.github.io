@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIGC-X Playground · Yuean</title>
+  <meta name="description" content="AIGC-X Playground is a competition gallery for student-built HTML designs." />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" type="image/png" href="../assets/favicon.png" />
+  <link rel="stylesheet" href="../styles.css?v=20260609-playground" />
+</head>
+<body class="playground-page">
+  <div class="noise"></div>
+
+  <header class="nav">
+    <a class="brand" href="../index.html" aria-label="AIGC-X home">
+      <img class="brand-logo" src="../assets/yueon-mark-256.webp" alt="AIGC-X" width="42" height="42" decoding="async" />
+      <span>AIGC-X</span>
+    </a>
+    <div class="nav-actions">
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="./index.html" aria-current="page">Playground</a>
+        <a href="../join.html">Join</a>
+        <a href="https://github.com/Yueon-Labs" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+      <a class="nav-join" href="../join.html">Join us</a>
+    </div>
+  </header>
+
+  <main class="playground-main">
+    <section class="section-shell playground-hero" aria-labelledby="playgroundTitle">
+      <p class="playground-kicker">AIGC-X Activity Hub</p>
+      <h1 id="playgroundTitle">A big place for future activities.</h1>
+      <p class="playground-lede">
+        AIGC-X 的开放活动空间：比赛、Demo、工具、研究展示和未来服务都会从这里生长。
+      </p>
+      <div class="playground-actions">
+        <a class="btn btn-primary" href="#activities">Explore activities</a>
+        <a class="btn btn-secondary" href="#gallery">HTML gallery</a>
+        <a class="btn btn-secondary" href="#guide">Read guide</a>
+      </div>
+    </section>
+
+    <section class="section-shell activity-hub" id="activities" aria-labelledby="activitiesTitle">
+      <div class="section-heading">
+        <span>01 · Activity space</span>
+        <h2 id="activitiesTitle">One hub, many future modules.</h2>
+      </div>
+      <div class="activity-grid">
+        <article class="activity-card is-live">
+          <span>Live now</span>
+          <h3>HTML Gallery</h3>
+          <p>Competition entries and personal HTML designs, previewed safely on the website.</p>
+          <a href="#gallery">Open module</a>
+        </article>
+        <article class="activity-card">
+          <span>Next</span>
+          <h3>Competitions</h3>
+          <p>Challenge pages, rules, deadlines, rankings, winners, and final showcases.</p>
+        </article>
+        <article class="activity-card">
+          <span>Future</span>
+          <h3>Workshops</h3>
+          <p>Event pages for model evaluation, agents, robotics, video, design, and product sessions.</p>
+        </article>
+        <article class="activity-card">
+          <span>Future</span>
+          <h3>Demo Lab</h3>
+          <p>Student-built tools, model demos, agent interfaces, and interactive prototypes.</p>
+        </article>
+        <article class="activity-card">
+          <span>Future</span>
+          <h3>Service Portal</h3>
+          <p>Entry points for hosted APIs, internal tools, dashboards, and future backend services.</p>
+        </article>
+        <article class="activity-card">
+          <span>Future</span>
+          <h3>Research Wall</h3>
+          <p>Notes, papers, experiments, benchmark records, and public learning archives.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell playground-panel" id="gallery" aria-labelledby="galleryTitle">
+      <div class="section-heading">
+        <span>02 · HTML Gallery</span>
+        <h2 id="galleryTitle">The first module: personal HTML designs in safe preview frames.</h2>
+      </div>
+      <div class="playground-layout">
+        <div class="submission-list" id="submissionList" aria-label="Competition submissions"></div>
+        <section class="preview-stage" aria-label="Selected submission preview">
+          <div class="preview-toolbar">
+            <div>
+              <span class="preview-label">Preview</span>
+              <strong id="previewTitle">Select a submission</strong>
+            </div>
+            <a class="preview-open" id="previewOpen" href="#" target="_blank" rel="noreferrer" aria-disabled="true">Open HTML</a>
+          </div>
+          <iframe
+            id="submissionFrame"
+            title="Submission preview"
+            sandbox="allow-scripts"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          ></iframe>
+        </section>
+      </div>
+    </section>
+
+    <section class="section-shell playground-guide" id="guide" aria-labelledby="guideTitle">
+      <div class="section-heading">
+        <span>03 · Guide</span>
+        <h2 id="guideTitle">A shared rulebook for a diverse playground.</h2>
+      </div>
+      <div class="guide-layout">
+        <article class="guide-intro">
+          <h3>Playground is not only a gallery.</h3>
+          <p>
+            AIGC-X Playground is an open activity hub for competitions, demos, tools,
+            research showcases, and future services.
+          </p>
+          <a class="btn btn-primary" href="./GUIDE.md" target="_blank" rel="noreferrer">Open full guide</a>
+        </article>
+        <div class="guide-cards">
+          <article>
+            <span>Types</span>
+            <h3>Many forms</h3>
+            <p>Static designs, interactive experiments, AI demos, docs, tools, prototypes, and future services.</p>
+          </article>
+          <article>
+            <span>Structure</span>
+            <h3>One entry, one folder</h3>
+            <p>Use <code>playground/submissions/&lt;entry-id&gt;/index.html</code> and keep local assets nearby.</p>
+          </article>
+          <article>
+            <span>Metadata</span>
+            <h3>Listed by JSON</h3>
+            <p>Add title, author, description, tags, and URL in <code>submissions.json</code>.</p>
+          </article>
+          <article>
+            <span>Safety</span>
+            <h3>Sandbox first</h3>
+            <p>No secrets, hidden redirects, credential collection, payment forms, or unreviewed trackers.</p>
+          </article>
+          <article>
+            <span>Backend</span>
+            <h3>Frontend here, API later</h3>
+            <p>Future services can use Playground for UI and reviewed backend routes under <code>/api/*</code>.</p>
+          </article>
+          <article>
+            <span>Review</span>
+            <h3>Submit through PR</h3>
+            <p>Entries are reviewed before public deployment so the website can stay open and stable.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell playground-submit" id="submit" aria-labelledby="submitTitle">
+      <div class="section-heading">
+        <span>04 · Submit</span>
+        <h2 id="submitTitle">One folder, one HTML page.</h2>
+      </div>
+      <div class="submit-grid">
+        <article>
+          <span>Step 01</span>
+          <h3>Create your folder</h3>
+          <p>Put your work in <code>playground/submissions/your-name/index.html</code>.</p>
+        </article>
+        <article>
+          <span>Step 02</span>
+          <h3>Add metadata</h3>
+          <p>Add your entry to <code>playground/submissions.json</code> with title, author, description, tags, and URL.</p>
+        </article>
+        <article>
+          <span>Step 03</span>
+          <h3>Open a PR</h3>
+          <p>After review and merge, your page appears on the public website automatically.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>AIGC-X Playground · Yuean</span>
+    <span>Student HTML designs · Safe previews · Open competition</span>
+  </footer>
+
+  <script src="./playground.js?v=20260609-playground" defer></script>
+</body>
+</html>
