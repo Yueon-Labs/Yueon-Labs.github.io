@@ -48,7 +48,7 @@ jobs:
             --exclude='.DS_Store' \
             --exclude='._*' \
             -czf "$RUNNER_TEMP/site-${GITHUB_SHA}.tar.gz" \
-            index.html join.html palettes.html robots.txt styles.css script.js assets
+            index.html join.html palettes.html robots.txt styles.css script.js assets playground
 
       - name: Configure SSH
         env:

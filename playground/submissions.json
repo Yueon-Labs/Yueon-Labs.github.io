@@ -1,0 +1,18 @@
+[
+  {
+    "id": "starter-card",
+    "title": "Starter Card",
+    "author": "AIGC-X Team",
+    "description": "A clean starter template for competition participants.",
+    "tags": ["starter", "minimal", "responsive"],
+    "url": "./submissions/starter-card/index.html"
+  },
+  {
+    "id": "neon-terminal",
+    "title": "Neon Terminal",
+    "author": "AIGC-X Team",
+    "description": "A cyber terminal style demo showing what a custom HTML entry can look like.",
+    "tags": ["terminal", "motion", "demo"],
+    "url": "./submissions/neon-terminal/index.html"
+  }
+]
