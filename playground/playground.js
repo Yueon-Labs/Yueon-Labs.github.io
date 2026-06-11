@@ -16,6 +16,7 @@ function setActive(id) {
 function selectSubmission(item, updateUrl = true) {
   if (!item || !frame || !previewTitle || !previewOpen) return;
   frame.src = item.url;
+  previewTitle.removeAttribute('data-i18n');
   previewTitle.textContent = `${item.title} · ${item.author}`;
   previewOpen.href = item.url;
   previewOpen.removeAttribute('aria-disabled');
