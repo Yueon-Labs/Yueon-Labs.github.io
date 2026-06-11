@@ -34,6 +34,12 @@
   text-transform: none;
   font-weight: 900;
 }
+:lang(en) .playground-hero h1 {
+  letter-spacing: -.02em;
+}
+:lang(zh) .playground-hero h1 {
+  letter-spacing: -.015em;
+}
 .playground-lede {
   width: min(760px, 100%);
   margin: 56px 0 0;

@@ -7,7 +7,7 @@
   <meta name="description" content="Join AIGC-X through the AIGC-WZU QQ group." />
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" type="image/png" href="./assets/favicon.png" />
-  <link rel="stylesheet" href="./styles.css?v=20260609-playground" />
+  <link rel="stylesheet" href="./styles.css?v=20260611-region" />
 </head>
 <body class="join-page">
   <header class="nav">
@@ -17,10 +17,14 @@
     </a>
     <div class="nav-actions">
       <nav class="nav-links" aria-label="Main navigation">
-        <a href="./playground/">Playground</a>
-        <a href="https://github.com/Yueon-Labs" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="./playground/" data-i18n="nav.playground">Playground</a>
+        <a href="https://github.com/Yueon-Labs" target="_blank" rel="noreferrer" data-i18n="nav.github">GitHub</a>
       </nav>
-      <a class="nav-join is-active" href="./join.html" aria-current="page">Join us</a>
+      <div class="lang-switch" aria-label="Language switch">
+        <button type="button" data-lang-switch="zh" aria-pressed="false">中文</button>
+        <button type="button" data-lang-switch="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="nav-join is-active" href="./join.html" aria-current="page" data-i18n="nav.joinUs">Join us</a>
     </div>
   </header>
 
@@ -39,20 +43,20 @@
       <div class="join-content">
         <div class="join-statement">
           <p class="join-kicker">AIGC-X / AIGC-WZU</p>
-          <h1 id="joinTitle">Join us</h1>
-          <p class="join-lede">
+          <h1 id="joinTitle" data-i18n="join.title">Join us</h1>
+          <p class="join-lede" data-i18n="join.lede">
             Build agents, evaluate models, prototype robotics workflows, make AI video systems,
             and ship student-built tools with people who are willing to test ideas in public.
           </p>
           <div class="join-actions">
-            <a class="btn btn-primary" href="./index.html">Back to lab</a>
+            <a class="btn btn-primary" href="./index.html" data-i18n="join.back">Back to lab</a>
             <a class="btn btn-secondary" href="https://github.com/Yueon-Labs" target="_blank" rel="noreferrer">GitHub</a>
           </div>
 
           <aside class="qq-card" aria-label="AIGC-X QQ group">
-            <span class="qq-label">QQ Group</span>
+            <span class="qq-label" data-i18n="join.qq">QQ Group</span>
             <strong>1073530319</strong>
-            <button class="btn btn-secondary qq-copy" type="button" data-copy="1073530319">Copy number</button>
+            <button class="btn btn-secondary qq-copy" type="button" data-copy="1073530319" data-i18n="join.copy">Copy number</button>
           </aside>
         </div>
       </div>
@@ -67,6 +71,7 @@
     </section>
   </main>
 
+  <script src="./i18n.js?v=20260611-region" defer></script>
   <script src="./script.js?v=20260609-playground" defer></script>
 </body>
 </html>

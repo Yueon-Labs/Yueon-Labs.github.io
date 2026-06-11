@@ -7,7 +7,7 @@
   <meta name="description" content="AIGC-X / AIGC-WZU is a New Intelligence Lab from Wenzhou University AIGC Club." />
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" type="image/png" href="./assets/favicon.png" />
-  <link rel="stylesheet" href="./styles.css?v=20260609-playground" />
+  <link rel="stylesheet" href="./styles.css?v=20260611-region" />
 </head>
 <body>
   <div class="cursor-glow" id="cursorGlow"></div>
@@ -20,11 +20,15 @@
     </a>
     <div class="nav-actions">
       <nav class="nav-links" aria-label="Main navigation">
-        <a href="./playground/">Playground</a>
-        <a href="#join">Join</a>
-        <a href="https://github.com/Yueon-Labs" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="./playground/" data-i18n="nav.playground">Playground</a>
+        <a href="#join" data-i18n="nav.join">Join</a>
+        <a href="https://github.com/Yueon-Labs" target="_blank" rel="noreferrer" data-i18n="nav.github">GitHub</a>
       </nav>
-      <a class="nav-join" href="./join.html">Join us</a>
+      <div class="lang-switch" aria-label="Language switch">
+        <button type="button" data-lang-switch="zh" aria-pressed="false">中文</button>
+        <button type="button" data-lang-switch="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="nav-join" href="./join.html" data-i18n="nav.joinUs">Join us</a>
     </div>
   </header>
 
@@ -44,88 +48,86 @@
 
     <section class="section-shell manifesto">
       <p>
-        <strong>AIGC is our support layer.</strong>
-        The lab is about models that reason, agents that act, robots that touch the world,
-        videos that become programmable, and student-built systems that make the future feel closer.
+        <strong data-i18n="home.manifesto.strong">AIGC is our support layer.</strong>
+        <span data-i18n="home.manifesto.rest">The lab is about models that reason, agents that act, robots that touch the world,
+        videos that become programmable, and student-built systems that make the future feel closer.</span>
       </p>
     </section>
 
     <section class="section-shell" id="scope">
       <div class="section-heading">
-        <span>01 · What we play with</span>
-        <h2>Models, Agents, Robotics, Video — all in one playground.</h2>
+        <span data-i18n="home.scope.eyebrow">01 · What we play with</span>
+        <h2 data-i18n="home.scope.title">Models, Agents, Robotics, Video — all in one playground.</h2>
       </div>
       <div class="grid cards-grid">
         <article class="scope-card">
           <span>01</span>
-          <h3>Model Arena</h3>
-          <p>模型评测、对抗测试、幻觉分析、失效案例库、能力边界探索。</p>
+          <h3 data-i18n="home.scope.model.title">Model Arena</h3>
+          <p data-i18n="home.scope.model.body">模型评测、对抗测试、幻觉分析、失效案例库、能力边界探索。</p>
         </article>
         <article class="scope-card">
           <span>02</span>
-          <h3>New Model Paradigms</h3>
-          <p>多模态、推理模型、世界模型、端侧模型、新交互范式。</p>
+          <h3 data-i18n="home.scope.paradigm.title">New Model Paradigms</h3>
+          <p data-i18n="home.scope.paradigm.body">多模态、推理模型、世界模型、端侧模型、新交互范式。</p>
         </article>
         <article class="scope-card">
           <span>03</span>
-          <h3>Agent Systems</h3>
-          <p>长期记忆、工具调用、任务规划、自主执行、Agent Runtime。</p>
+          <h3 data-i18n="home.scope.agent.title">Agent Systems</h3>
+          <p data-i18n="home.scope.agent.body">长期记忆、工具调用、任务规划、自主执行、Agent Runtime。</p>
         </article>
         <article class="scope-card">
           <span>04</span>
-          <h3>Robotics</h3>
-          <p>具身智能、视觉感知、语音交互、动作规划、真实世界任务。</p>
+          <h3 data-i18n="home.scope.robotics.title">Robotics</h3>
+          <p data-i18n="home.scope.robotics.body">具身智能、视觉感知、语音交互、动作规划、真实世界任务。</p>
         </article>
         <article class="scope-card">
           <span>05</span>
-          <h3>AI Video</h3>
-          <p>AI 视频、数字人、短片生成、动态视觉、创意工作流。</p>
+          <h3 data-i18n="home.scope.video.title">AI Video</h3>
+          <p data-i18n="home.scope.video.body">AI 视频、数字人、短片生成、动态视觉、创意工作流。</p>
         </article>
         <article class="scope-card">
           <span>06</span>
-          <h3>Automation</h3>
-          <p>飞书、网页、本地工具、知识库、信息流和办公流自动化。</p>
+          <h3 data-i18n="home.scope.automation.title">Automation</h3>
+          <p data-i18n="home.scope.automation.body">飞书、网页、本地工具、知识库、信息流和办公流自动化。</p>
         </article>
       </div>
     </section>
 
     <section class="section-shell project-section" id="projects">
       <div class="section-heading">
-        <span>02 · Current project</span>
+        <span data-i18n="home.project.eyebrow">02 · Current project</span>
         <h2>NetAgent-CLI / PrivateClaw</h2>
       </div>
       <div class="project-card">
         <div>
-          <p class="project-label">Local AI Assistant System</p>
-          <h3>Memory, deep search, tools, scheduled execution, and Feishu ingress.</h3>
-          <p>
-            一个本地 AI 助手系统，支持长期记忆、深度搜索、受控命令执行、定时任务和飞书消息接入。
-            它是 AIGC-X 的第一个系统级项目。
+          <p class="project-label" data-i18n="home.project.label">Local AI Assistant System</p>
+          <h3 data-i18n="home.project.title">Memory, deep search, tools, scheduled execution, and Feishu ingress.</h3>
+          <p data-i18n="home.project.body">
+            一个本地 AI 助手系统，支持长期记忆、深度搜索、受控命令执行、定时任务和飞书消息接入。它是 AIGC-X 的第一个系统级项目。
           </p>
         </div>
-        <a class="btn btn-primary" href="https://github.com/Yueon-Labs/NetAgent-CLI" target="_blank" rel="noreferrer">Open GitHub</a>
+        <a class="btn btn-primary" href="https://github.com/Yueon-Labs/NetAgent-CLI" target="_blank" rel="noreferrer" data-i18n="home.project.cta">Open GitHub</a>
       </div>
     </section>
 
     <section class="section-shell join-section" id="join">
       <div class="section-heading">
-        <span>03 · Join us</span>
-        <h2>For builders, researchers, creators, operators, and product hackers.</h2>
+        <span data-i18n="home.join.eyebrow">03 · Join us</span>
+        <h2 data-i18n="home.join.title">For builders, researchers, creators, operators, and product hackers.</h2>
       </div>
       <div class="join-grid">
         <div class="join-copy">
-          <p>
-            你可以不会代码，但你最好有好奇心。想测模型、做 Agent、玩机器人、做 AI 视频、做产品、做开源，
-            都可以加入这个实验场。
+          <p data-i18n="home.join.body">
+            你可以不会代码，但你最好有好奇心。想测模型、做 Agent、玩机器人、做 AI 视频、做产品、做开源，都可以加入这个实验场。
           </p>
-          <a class="btn btn-secondary" href="https://github.com/Yueon-Labs" target="_blank" rel="noreferrer">Follow on GitHub</a>
+          <a class="btn btn-secondary" href="https://github.com/Yueon-Labs" target="_blank" rel="noreferrer" data-i18n="home.join.cta">Follow on GitHub</a>
         </div>
         <div class="roles">
-          <span>Builder</span>
-          <span>Researcher</span>
-          <span>Creator</span>
-          <span>Operator</span>
-          <span>Product Hacker</span>
+          <span data-i18n="home.role.builder">Builder</span>
+          <span data-i18n="home.role.researcher">Researcher</span>
+          <span data-i18n="home.role.creator">Creator</span>
+          <span data-i18n="home.role.operator">Operator</span>
+          <span data-i18n="home.role.product">Product Hacker</span>
         </div>
       </div>
     </section>
@@ -133,9 +135,10 @@
 
   <footer class="footer">
     <span>AIGC-X · AIGC-WZU</span>
-    <span>Models · Agents · Robotics · AI Video · Playground · Open Source</span>
+    <span data-i18n="footer.home">Models · Agents · Robotics · AI Video · Playground · Open Source</span>
   </footer>
 
+  <script src="./i18n.js?v=20260611-region" defer></script>
   <script src="./script.js?v=20260609-playground" defer></script>
 </body>
 </html>
